@@ -61,6 +61,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MineFieldExtractor.cs" />
+    <Compile Include="MineFieldExtractorShould.cs" />
     <Compile Include="MineSweeperGenerator.cs" />
     <Compile Include="MineSweeperGeneratorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
