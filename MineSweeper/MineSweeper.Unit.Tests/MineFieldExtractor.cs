@@ -23,12 +23,18 @@ namespace MineSweeper.Unit.Tests
         private ICollection CleanUpMineFields(List<string> mineFields)
         {
             mineFields.RemoveAll(string.IsNullOrWhiteSpace);
-            mineFields.Remove(mineFields.Last()); // Assume last minefield is the end of input
+            mineFields = RemoveEndOfInput(mineFields);
             for (var m = 0; m < mineFields.Count; m++)
             {
                 mineFields[m] = mineFields[m].TrimStart('\r', '\n');
                 mineFields[m] = mineFields[m].TrimEnd('\r', '\n');
             }
+            return mineFields;
+        }
+
+        private List<string> RemoveEndOfInput(List<string> mineFields)
+        {
+            mineFields.Remove(mineFields.Last());
             return mineFields;
         }
     }

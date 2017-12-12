@@ -12,7 +12,7 @@ namespace MineSweeper.Unit.Tests
 
     public class MineSweeperGeneratorShould
     {
-        //[Fact]
+        [Fact]
         public void ConvertAcceptanceTests()
         {
             var inputBuilder = new StringBuilder();
@@ -54,7 +54,7 @@ namespace MineSweeper.Unit.Tests
             var expectedMineField = expectedBuilder.ToString();
 
             var mineSweeperGenerator = new MineSweeperGenerator();
-            var mineField = mineSweeperGenerator.parseMineFields(minelessInput);
+            var mineField = mineSweeperGenerator.ParseMineFieldInput(minelessInput);
 
             Assert.Equal(expectedMineField, mineField);
         }
@@ -77,11 +77,9 @@ namespace MineSweeper.Unit.Tests
             var expectedMineField = expectedBuilder.ToString();
 
             var mineSweeperGenerator = new MineSweeperGenerator();
-            var mineField = mineSweeperGenerator.createNewMineField(minelessInput);
+            var mineField = mineSweeperGenerator.PlotDigitsOnMineField(minelessInput);
 
             Assert.Equal(expectedMineField, mineField);
         }
-
-
     }
 }
