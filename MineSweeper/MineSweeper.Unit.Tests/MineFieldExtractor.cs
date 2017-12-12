@@ -14,28 +14,31 @@ namespace MineSweeper.Unit.Tests
             MineFieldSeparator = mineFieldSeparator;
         }
 
-        public ICollection ExtractMineFields(string minelessInput)
+        public List<string> ExtractMineFields(string minelessInput)
         {
             var mineFields = Regex.Split(minelessInput, MineFieldSeparator).ToList();
             return CleanUpMineFields(mineFields);
         }
 
-        private ICollection CleanUpMineFields(List<string> mineFields)
+        private List<string> CleanUpMineFields(List<string> mineFields)
         {
-            mineFields.RemoveAll(string.IsNullOrWhiteSpace);
-            mineFields = RemoveEndOfInput(mineFields);
-            for (var m = 0; m < mineFields.Count; m++)
+            var cleanMineFields = mineFields.ToList();
+            cleanMineFields.RemoveAll(string.IsNullOrWhiteSpace);
+            cleanMineFields = RemoveEndOfInput(mineFields);
+            for (var i = 0; i < cleanMineFields.Count; i++)
             {
-                mineFields[m] = mineFields[m].TrimStart('\r', '\n');
-                mineFields[m] = mineFields[m].TrimEnd('\r', '\n');
+                cleanMineFields[i] = cleanMineFields[i].TrimStart('\r', '\n');
+                cleanMineFields[i] = cleanMineFields[i].TrimEnd('\r', '\n');
             }
-            return mineFields;
+            return cleanMineFields;
         }
 
         private List<string> RemoveEndOfInput(List<string> mineFields)
         {
-            mineFields.Remove(mineFields.Last());
-            return mineFields;
+            var mineFieldsWithoutEoi = mineFields.ToList();
+            mineFieldsWithoutEoi.Remove(mineFields.Last());
+            return mineFieldsWithoutEoi;
         }
+
     }
 }

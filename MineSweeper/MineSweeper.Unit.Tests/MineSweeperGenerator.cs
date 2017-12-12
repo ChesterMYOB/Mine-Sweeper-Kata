@@ -11,36 +11,37 @@ namespace MineSweeper.Unit.Tests
         public MineFieldExtractor MineFieldExtractor { get; set; }
         public MineFieldPlotter MineFieldPlotter { get; set; }
 
+        public string MineFieldSeparator { get; set; }
+
         public MineSweeperGenerator()
         {
-            MineFieldExtractor = new MineFieldExtractor("~~~");
+            MineFieldSeparator = "~~~";
+            MineFieldExtractor = new MineFieldExtractor(MineFieldSeparator);
             MineFieldPlotter = new MineFieldPlotter();
         }
 
 
-        public string ParseMineFieldInput(string minefields)
+        public string ParseMineFieldInput(string input)
         {
-            var mineFieldCollection = MineFieldExtractor.ExtractMineFields(minefields);
-            foreach (string mineField in mineFieldCollection)
+            var mineFields = MineFieldExtractor.ExtractMineFields(input);
+            var numberedMineFields = MineFieldPlotter.PlotMinesFieldNumbers(mineFields);
+            return SerialiseMineFields(numberedMineFields);
+        }
+
+ 
+        private string SerialiseMineFields(List<string> mineFields)
+        {
+            var serialisedMineFields = MineFieldSeparator;
+            for (int i = 0; i < mineFields.Count; i++)
             {
-                PlotDigitsOnMineField(mineField);
+                serialisedMineFields = serialisedMineFields + MineFieldSeparator;
+                // Add MineFieldSeparator
+                // Field X
+                // MineField
+                // Add MineFieldSeparator
             }
-            return minefields;
-        }
 
-        public string PlotDigitsOnMineField(string mineField)
-        {
-            var dimensions = GetMineFieldDimensions(mineField);
-            return MineFieldPlotter.PlotMineNumbers(dimensions.height, dimensions.width, mineField);
-        }
-
-        private (int height, int width) GetMineFieldDimensions(string mineField)
-        {
-
-            
-            var height = int.Parse(mineField[0].ToString());
-            var width = int.Parse(mineField[1].ToString());
-            return (height, width);
+            return serialisedMineFields;
         }
     }
 }

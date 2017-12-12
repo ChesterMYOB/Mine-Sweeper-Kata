@@ -102,5 +102,49 @@ namespace MineSweeper.Unit.Tests
             if (y + 1 > height - 1 || x + 1 > width - 1) return ".";
             return mineField[y + 1][x + 1].ToString();
         }
+
+        public void PlotMineNumbers(Dictionary<string, string> mineFieldDictionary)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<string> PlotMinesFieldNumbers(List<string> mineFieldCollection)
+        {
+            mineFieldCollection.Select(PlotMineFieldNumbers).ToList();
+            mineFieldCollection.ToList<>()
+            return new List<string>();
+        }
+
+        private Dictionary<string, string> PlotMineFieldNumbers(string mineField)
+        {
+            var mineFieldDictionary = ConvertMineFieldToDictionary(mineField);
+            PlotMineNumbers(mineFieldDictionary);
+            return mineFieldDictionary;
+        }
+
+        private Dictionary<string, string> ConvertMineFieldToDictionary(string mineField)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
+
+        public string PlotDigitsOnMineField(string mineField)
+        {
+            var dimensions = GetMineFieldDimensions(mineField);
+            return MineFieldPlotter.PlotMineNumbers(dimensions.height, dimensions.width, mineField);
+        }
+
+        private (int height, int width) GetMineFieldDimensions(string mineField)
+        {
+
+
+            var height = int.Parse(mineField[0].ToString());
+            var width = int.Parse(mineField[1].ToString());
+            return (height, width);
+        }
+
     }
 }
