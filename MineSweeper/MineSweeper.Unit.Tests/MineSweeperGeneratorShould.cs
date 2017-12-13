@@ -16,7 +16,7 @@ namespace MineSweeper.Unit.Tests
         public void ConvertAcceptanceTests()
         {
             var inputBuilder = new StringBuilder();
-            inputBuilder.Append("~~~").AppendLine();
+            inputBuilder.Append("~").AppendLine();
             inputBuilder.Append("44").AppendLine();
             inputBuilder.Append("*...").AppendLine();
             inputBuilder.Append("....").AppendLine();
@@ -34,7 +34,7 @@ namespace MineSweeper.Unit.Tests
             inputBuilder.Append("~~~").AppendLine();
             inputBuilder.Append("00").AppendLine();
             inputBuilder.Append("~~~").AppendLine();
-            var minelessInput = inputBuilder.ToString();
+            var minefieldsInput = inputBuilder.ToString();
 
             var expectedBuilder = new StringBuilder();
             expectedBuilder.Append("~~~").AppendLine();
@@ -54,7 +54,7 @@ namespace MineSweeper.Unit.Tests
             var expectedMineField = expectedBuilder.ToString();
 
             var mineSweeperGenerator = new MineSweeperGenerator();
-            var mineField = mineSweeperGenerator.ParseMineFieldInput(minelessInput);
+            var mineField = mineSweeperGenerator.ParseMineFieldInput(minefieldsInput);
 
             Assert.Equal(expectedMineField, mineField);
         }
@@ -76,8 +76,8 @@ namespace MineSweeper.Unit.Tests
             expectedBuilder.Append("000").AppendLine();
             var expectedMineField = expectedBuilder.ToString();
 
-            var mineSweeperGenerator = new MineSweeperGenerator();
-            var mineField = mineSweeperGenerator.PlotDigitsOnMineField(minelessInput);
+            var mineFieldPlotter = new MineFieldPlotter();
+            var mineField = mineFieldPlotter.PlotDigitsOnMineField(minelessInput);
 
             Assert.Equal(expectedMineField, mineField);
         }

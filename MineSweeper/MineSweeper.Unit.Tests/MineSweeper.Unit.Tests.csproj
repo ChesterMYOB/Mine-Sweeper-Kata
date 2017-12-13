@@ -75,6 +75,7 @@
     <Compile Include="MineFieldExtractorShould.cs" />
     <Compile Include="MineFieldPlotter.cs" />
     <Compile Include="MineFieldPlotterShould.cs" />
+    <Compile Include="MineFieldSerialiser.cs" />
     <Compile Include="MineSweeperGenerator.cs" />
     <Compile Include="MineSweeperGeneratorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

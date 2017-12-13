@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 
@@ -14,31 +13,37 @@ namespace MineSweeper.Unit.Tests
             MineFieldSeparator = mineFieldSeparator;
         }
 
-        public List<string> ExtractMineFields(string minelessInput)
+        public List<string> ExtractMineFields(string mineFieldsBlob)
         {
-            var mineFields = Regex.Split(minelessInput, MineFieldSeparator).ToList();
+            var mineFields = Regex.Split(mineFieldsBlob, MineFieldSeparator).ToList();
             return CleanUpMineFields(mineFields);
         }
 
-        private List<string> CleanUpMineFields(List<string> mineFields)
+        private List<string> CleanUpMineFields(IEnumerable<string> mineFields)
         {
             var cleanMineFields = mineFields.ToList();
             cleanMineFields.RemoveAll(string.IsNullOrWhiteSpace);
-            cleanMineFields = RemoveEndOfInput(mineFields);
-            for (var i = 0; i < cleanMineFields.Count; i++)
-            {
-                cleanMineFields[i] = cleanMineFields[i].TrimStart('\r', '\n');
-                cleanMineFields[i] = cleanMineFields[i].TrimEnd('\r', '\n');
-            }
+            cleanMineFields = RemoveEndOfInputLine(cleanMineFields);
+            cleanMineFields = RemoveNewLineCharacters(cleanMineFields);
             return cleanMineFields;
         }
 
-        private List<string> RemoveEndOfInput(List<string> mineFields)
+        private List<string> RemoveEndOfInputLine(IReadOnlyCollection<string> mineFields)
         {
-            var mineFieldsWithoutEoi = mineFields.ToList();
-            mineFieldsWithoutEoi.Remove(mineFields.Last());
-            return mineFieldsWithoutEoi;
+            var mineFieldsWithoutEOI = mineFields.ToList();
+            mineFieldsWithoutEOI.Remove(mineFields.Last());
+            return mineFieldsWithoutEOI;
         }
 
+        private List<string> RemoveNewLineCharacters(IList<string> mineFields)
+        {
+            var mineFieldsWithoutNewLines = mineFields.ToList();
+            for (var i = 0; i < mineFields.Count; i++)
+            {
+                mineFields[i] = mineFields[i].TrimStart('\r', '\n');
+                mineFields[i] = mineFields[i].TrimEnd('\r', '\n');
+            }
+            return mineFieldsWithoutNewLines;
+        }
     }
 }

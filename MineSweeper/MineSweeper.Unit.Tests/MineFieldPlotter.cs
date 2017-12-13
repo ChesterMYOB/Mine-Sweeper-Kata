@@ -109,10 +109,9 @@ namespace MineSweeper.Unit.Tests
         }
 
 
-        public List<string> PlotMinesFieldNumbers(List<string> mineFieldCollection)
+        public List<string> PlotNumbersOnMineFields(List<string> mineFieldCollection)
         {
             mineFieldCollection.Select(PlotMineFieldNumbers).ToList();
-            mineFieldCollection.ToList<>()
             return new List<string>();
         }
 
@@ -134,7 +133,7 @@ namespace MineSweeper.Unit.Tests
         public string PlotDigitsOnMineField(string mineField)
         {
             var dimensions = GetMineFieldDimensions(mineField);
-            return MineFieldPlotter.PlotMineNumbers(dimensions.height, dimensions.width, mineField);
+            return PlotMineNumbers(dimensions.height, dimensions.width, mineField);
         }
 
         private (int height, int width) GetMineFieldDimensions(string mineField)
