@@ -24,7 +24,7 @@ namespace MineSweeper.Unit.Tests
             var cleanMineFields = mineFields.ToList();
             cleanMineFields.RemoveAll(string.IsNullOrWhiteSpace);
             cleanMineFields = RemoveEndOfInputLine(cleanMineFields);
-            cleanMineFields = RemoveNewLineCharacters(cleanMineFields);
+            cleanMineFields = RemoveEnclosingNewLineCharacters(cleanMineFields);
             return cleanMineFields;
         }
 
@@ -35,13 +35,13 @@ namespace MineSweeper.Unit.Tests
             return mineFieldsWithoutEOI;
         }
 
-        private List<string> RemoveNewLineCharacters(IList<string> mineFields)
+        private List<string> RemoveEnclosingNewLineCharacters(IList<string> mineFields)
         {
             var mineFieldsWithoutNewLines = mineFields.ToList();
-            for (var i = 0; i < mineFields.Count; i++)
+            for (var i = 0; i < mineFieldsWithoutNewLines.Count; i++)
             {
-                mineFields[i] = mineFields[i].TrimStart('\r', '\n');
-                mineFields[i] = mineFields[i].TrimEnd('\r', '\n');
+                mineFieldsWithoutNewLines[i] = mineFieldsWithoutNewLines[i].TrimStart('\r', '\n');
+                mineFieldsWithoutNewLines[i] = mineFieldsWithoutNewLines[i].TrimEnd('\r', '\n');
             }
             return mineFieldsWithoutNewLines;
         }

@@ -71,13 +71,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MineFieldExtractor.cs" />
-    <Compile Include="MineFieldExtractorShould.cs" />
-    <Compile Include="MineFieldPlotter.cs" />
-    <Compile Include="MineFieldPlotterShould.cs" />
-    <Compile Include="MineFieldSerialiser.cs" />
-    <Compile Include="MineSweeperGenerator.cs" />
-    <Compile Include="MineSweeperGeneratorShould.cs" />
+    <Compile Include="src\MineFieldExtractor.cs" />
+    <Compile Include="test\MineFieldExtractorShould.cs" />
+    <Compile Include="src\MineFieldPlotter.cs" />
+    <Compile Include="test\MineFieldPlotterShould.cs" />
+    <Compile Include="src\MineFieldSerialiser.cs" />
+    <Compile Include="src\MineSweeperGenerator.cs" />
+    <Compile Include="test\MineSweeperGeneratorShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

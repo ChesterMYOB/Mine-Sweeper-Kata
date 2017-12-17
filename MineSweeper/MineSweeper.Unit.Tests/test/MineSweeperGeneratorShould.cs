@@ -1,22 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Text;
 using Xunit;
-using Xunit.Sdk;
-using Assert = Xunit.Assert;
 
-
-namespace MineSweeper.Unit.Tests
+namespace MineSweeper.Unit.Tests.test
 {
-
     public class MineSweeperGeneratorShould
     {
         [Fact]
-        public void ConvertAcceptanceTests()
+        public void ConvertTheAcceptanceTest()
         {
             var inputBuilder = new StringBuilder();
-            inputBuilder.Append("~").AppendLine();
+            inputBuilder.Append("~~~").AppendLine();
             inputBuilder.Append("44").AppendLine();
             inputBuilder.Append("*...").AppendLine();
             inputBuilder.Append("....").AppendLine();
@@ -33,7 +26,7 @@ namespace MineSweeper.Unit.Tests
             inputBuilder.AppendLine();
             inputBuilder.Append("~~~").AppendLine();
             inputBuilder.Append("00").AppendLine();
-            inputBuilder.Append("~~~").AppendLine();
+            inputBuilder.Append("~~~");
             var minefieldsInput = inputBuilder.ToString();
 
             var expectedBuilder = new StringBuilder();
@@ -50,34 +43,11 @@ namespace MineSweeper.Unit.Tests
             expectedBuilder.Append("**100").AppendLine();
             expectedBuilder.Append("33200").AppendLine();
             expectedBuilder.Append("1*100").AppendLine();
-            expectedBuilder.Append("~~~").AppendLine();
+            expectedBuilder.Append("~~~");
             var expectedMineField = expectedBuilder.ToString();
 
             var mineSweeperGenerator = new MineSweeperGenerator();
             var mineField = mineSweeperGenerator.ParseMineFieldInput(minefieldsInput);
-
-            Assert.Equal(expectedMineField, mineField);
-        }
-
-      
-        [Fact]
-        public void ConvertMinelessInputIntoEmptyMineField()
-        {
-            var inputBuilder = new StringBuilder();
-            inputBuilder.Append("33").AppendLine();
-            inputBuilder.Append("...").AppendLine();
-            inputBuilder.Append("...").AppendLine();
-            inputBuilder.Append("...").AppendLine();
-            var minelessInput = inputBuilder.ToString();
-
-            var expectedBuilder = new StringBuilder();
-            expectedBuilder.Append("000").AppendLine();
-            expectedBuilder.Append("000").AppendLine();
-            expectedBuilder.Append("000").AppendLine();
-            var expectedMineField = expectedBuilder.ToString();
-
-            var mineFieldPlotter = new MineFieldPlotter();
-            var mineField = mineFieldPlotter.PlotDigitsOnMineField(minelessInput);
 
             Assert.Equal(expectedMineField, mineField);
         }
